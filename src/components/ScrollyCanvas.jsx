@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useScroll, useSpring, useTransform } from 'framer-motion';
 import Overlay from './Overlay';
 
-const TOTAL_FRAMES = 74; // 0 to 89
+const TOTAL_FRAMES = 77; // 0 to 89
 
 export default function ScrollyCanvas() {
   const containerRef = useRef(null);
