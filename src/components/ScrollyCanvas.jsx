@@ -74,19 +74,36 @@ export default function ScrollyCanvas() {
       const image = images[frame];
 
       if (image && image.complete) {
-        const canvasRatio = canvas.width / canvas.height;
         const imgRatio = image.width / image.height;
-        let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
+        const isMobile = canvas.width < 768;
+        const paddingTop = 90;
 
-        if (canvasRatio > imgRatio) {
-          drawWidth = canvas.width;
-          drawHeight = canvas.width / imgRatio;
-          offsetY = (canvas.height - drawHeight) / 2;
+        // Start by matching canvas width
+        let drawWidth = canvas.width;
+        let drawHeight = canvas.width / imgRatio;
+
+        if (isMobile) {
+          // On mobile, doing full 'object-cover' zooms in too much horizontally. 
+          // So we scale it to be visible but not fill the whole vertical screen.
+          // Covering ~65% of screen height keeps the person fully visible while still looking cinematic.
+          const targetHeight = canvas.height * 0.65;
+          if (drawHeight < targetHeight) {
+            drawHeight = targetHeight;
+            drawWidth = drawHeight * imgRatio;
+          }
         } else {
-          drawHeight = canvas.height;
-          drawWidth = canvas.height * imgRatio;
-          offsetX = (canvas.width - drawWidth) / 2;
+          // If height doesn't give us enough headroom to shift the image safely, scale based on height
+          if (drawHeight < canvas.height + (2 * paddingTop)) {
+            drawHeight = canvas.height + (2 * paddingTop);
+            drawWidth = drawHeight * imgRatio;
+          }
         }
+
+        const offsetX = (canvas.width - drawWidth) / 2;
+        // Vertically center, but on desktop shift downwards to account for Navbar
+        const offsetY = isMobile 
+          ? (canvas.height - drawHeight) / 2 
+          : ((canvas.height - drawHeight) / 2) + paddingTop;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
@@ -104,7 +121,6 @@ export default function ScrollyCanvas() {
     const resizeCanvas = () => {
       const canvas = canvasRef.current;
       if (canvas) {
-        // Adjust for high DPI displays if needed (leaving standard for now)
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
