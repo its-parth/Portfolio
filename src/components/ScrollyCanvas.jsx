@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useScroll, useSpring, useTransform } from "framer-motion";
 import Overlay from "./Overlay";
 
-const TOTAL_FRAMES = 99;
+const TOTAL_FRAMES = 83;
 
 export default function ScrollyCanvas() {
   const containerRef = useRef(null);
@@ -48,6 +48,9 @@ export default function ScrollyCanvas() {
   useEffect(() => {
     const resize = () => {
       const canvas = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+
+      const dpr = window.devicePixelRatio || 1;
 
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -81,52 +84,76 @@ export default function ScrollyCanvas() {
   );
 
   // Draw only when frame changes
-  useEffect(() => {
-    if (!loaded) return;
+useEffect(() => {
+  if (!loaded) return;
 
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+  const canvas = canvasRef.current;
+  const ctx = canvas.getContext("2d");
 
-    let previousFrame = -1;
+  const drawFrame = (frame) => {
+    const image = images[frame];
 
-    const unsubscribe = currentFrame.on("change", (value) => {
-      const frame = Math.floor(value);
+    if (!image) return;
 
-      if (frame === previousFrame) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      previousFrame = frame;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
 
-      const image = images[frame];
+    const imgRatio = image.width / image.height;
+    const canvasRatio = canvas.width / canvas.height;
 
-      if (!image) return;
+    let drawWidth;
+    let drawHeight;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (imgRatio > canvasRatio) {
+      // Image is wider
+      drawHeight = canvas.height;
+      drawWidth = drawHeight * imgRatio;
 
-      const imgRatio = image.width / image.height;
-      const canvasRatio = canvas.width / canvas.height;
-
-      let drawWidth;
-      let drawHeight;
-
-      if (imgRatio > canvasRatio) {
-        drawHeight = canvas.height;
-        drawWidth = drawHeight * imgRatio;
-      } else {
+      // Ensure width covers canvas
+      if (drawWidth < canvas.width) {
         drawWidth = canvas.width;
         drawHeight = drawWidth / imgRatio;
       }
+    } else {
+      // Image is taller
+      drawWidth = canvas.width;
+      drawHeight = drawWidth / imgRatio;
 
-      const x = (canvas.width - drawWidth) / 2;
-      const y = (canvas.height - drawHeight) / 2;
+      // Ensure height covers canvas
+      if (drawHeight < canvas.height) {
+        drawHeight = canvas.height;
+        drawWidth = drawHeight * imgRatio;
+      }
+    }
+    const x = (canvas.width - drawWidth) / 2;
+    const y = (canvas.height - drawHeight) / 2 + 50;
 
-      ctx.drawImage(image, x, y, drawWidth, drawHeight);
-    });
+    ctx.drawImage(image, x, y, drawWidth, drawHeight);
+  };
 
-    return () => unsubscribe();
-  }, [loaded, images, currentFrame]);
+  // ⭐ Draw first frame immediately
+  drawFrame(0);
+
+  let previousFrame = 0;
+
+  const unsubscribe = currentFrame.on("change", (value) => {
+    const frame = Math.floor(value);
+
+    if (frame === previousFrame) return;
+
+    previousFrame = frame;
+
+    drawFrame(frame);
+  });
+
+  return () => unsubscribe();
+}, [loaded, images, currentFrame]);
 
   return (
     <div
+      id="hero"
       ref={containerRef}
       className="relative h-[500vh] w-full bg-black"
     >

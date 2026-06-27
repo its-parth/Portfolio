@@ -1,69 +1,108 @@
-import React from 'react';
-import { motion, useTransform } from 'framer-motion';
+import React from "react";
+import { motion, useTransform } from "framer-motion";
 
 export default function Overlay({ scrollProgress }) {
-  // Center Text 0% - 20%
+  // Hero
   const opacity1 = useTransform(scrollProgress, [0, 0.15, 0.25], [1, 1, 0]);
   const y1 = useTransform(scrollProgress, [0, 0.25], [0, -100]);
   const blur1 = useTransform(scrollProgress, [0.15, 0.25], [0, 10]);
 
-  // Left Text 30% - 50%
-  const opacity2 = useTransform(scrollProgress, [0.2, 0.3, 0.45, 0.55], [0, 1, 1, 0]);
+  // Left
+  const opacity2 = useTransform(
+    scrollProgress,
+    [0.2, 0.3, 0.45, 0.55],
+    [0, 1, 1, 0]
+  );
   const y2 = useTransform(scrollProgress, [0.2, 0.3, 0.55], [100, 0, -100]);
-  const blur2 = useTransform(scrollProgress, [0.2, 0.3, 0.45, 0.55], [10, 0, 0, 10]);
+  const blur2 = useTransform(
+    scrollProgress,
+    [0.2, 0.3, 0.45, 0.55],
+    [10, 0, 0, 10]
+  );
 
-  // Right Text 60% - 80%
-  const opacity3 = useTransform(scrollProgress, [0.55, 0.65, 0.8, 0.95], [0, 1, 1, 0]);
+  // Right
+  const opacity3 = useTransform(
+    scrollProgress,
+    [0.55, 0.65, 0.8, 0.95],
+    [0, 1, 1, 0]
+  );
   const y3 = useTransform(scrollProgress, [0.55, 0.65, 0.95], [100, 0, -100]);
-  const blur3 = useTransform(scrollProgress, [0.55, 0.65, 0.8, 0.95], [10, 0, 0, 10]);
+  const blur3 = useTransform(
+    scrollProgress,
+    [0.55, 0.65, 0.8, 0.95],
+    [10, 0, 0, 10]
+  );
 
   return (
-    <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center text-white px-8 md:px-16 overflow-hidden">
-      
-      {/* 0% Center */}
-      <motion.div 
-        style={{ 
-          opacity: opacity1, 
-          y: y1, 
-          filter: useTransform(blur1, v => `blur(${v}px)`) 
+    <div className="absolute inset-0 pointer-events-none overflow-hidden text-white">
+
+      {/* HERO */}
+      <motion.div
+        style={{
+          opacity: opacity1,
+          y: y1,
+          filter: useTransform(blur1, (v) => `blur(${v}px)`),
         }}
-        className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full"
+        className="absolute left-1/2 bottom-[8%] -translate-x-1/2 text-center"
       >
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight whitespace-nowrap drop-shadow-lg">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[7rem] font-semibold tracking-tight">
           Parth Magar
         </h1>
+
+        <p className="mt-4 text-sm md:text-base uppercase tracking-[0.45em] text-neutral-400">
+          Full Stack Developer
+        </p>
       </motion.div>
 
-      {/* 30% Left */}
-      <motion.div 
-        style={{ 
-          opacity: opacity2, 
-          y: y2, 
-          filter: useTransform(blur2, v => `blur(${v}px)`) 
+      {/* LEFT */}
+      <motion.div
+        style={{
+          opacity: opacity2,
+          y: y2,
+          filter: useTransform(blur2, (v) => `blur(${v}px)`),
         }}
-        className="absolute top-[55%] left-[2%] md:left-[5%] lg:left-[10%] max-w-[600px] -translate-y-1/2"
+        className="absolute top-1/2 left-[7%] -translate-y-1/2"
       >
-        <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-left drop-shadow-lg">
-          127.0.0.1<br/>
-          <span className="text-gray-400">HOME</span>
+        <p className="uppercase tracking-[0.45em] text-neutral-500 text-sm mb-5">
+          I Build
+        </p>
+
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.9] tracking-tight">
+          Modern
+          <br />
+          Web Apps
         </h2>
       </motion.div>
 
-      {/* 60% Right */}
-      <motion.div 
-        style={{ 
-          opacity: opacity3, 
-          y: y3, 
-          filter: useTransform(blur3, v => `blur(${v}px)`) 
+      {/* RIGHT */}
+      <motion.div
+        style={{
+          opacity: opacity3,
+          y: y3,
+          filter: useTransform(blur3, (v) => `blur(${v}px)`),
         }}
-        className="absolute top-1/2 right-[5%] md:right-[5%] lg:right-[8%] max-w-[600px] -translate-y-1/2"
+        className="absolute top-1/2 right-[7%] -translate-y-1/2 text-right"
       >
-        <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-medium leading-tight text-right drop-shadow-lg">
-          git commit<br/>
-          <span className="text-gray-400">TRUST ME</span>
+        <p className="uppercase tracking-[0.45em] text-neutral-500 text-sm mb-5">
+          Enginner
+        </p>
+
+        <h2 className="text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.9] tracking-tight">
+          Ideas
+          <br />
+          Into Reality
         </h2>
       </motion.div>
 
+      {/* Bottom Left */}
+      <div className="absolute bottom-8 left-8 text-xs uppercase tracking-[0.35em] text-neutral-500">
+        Pune, India
+      </div>
+
+      {/* Bottom Right */}
+      <div className="absolute bottom-8 right-8 text-xs uppercase tracking-[0.35em] text-green-400">
+        Available for Work
+      </div>
     </div>
   );
 }
