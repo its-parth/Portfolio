@@ -13,7 +13,13 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      // Use getBoundingClientRect for absolute reliability relative to the viewport
+      const projectsEl = document.getElementById('projects');
+      if (projectsEl) {
+        // Change color exactly when the Projects section hits the bottom of the 85px Navbar
+        const top = projectsEl.getBoundingClientRect().top;
+        setScrolled(top <= 85);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -25,7 +31,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-transparent py-4' : 'bg-transparent py-6'
+        scrolled ? 'bg-[#121212]/90 backdrop-blur-md border-b border-white/10 py-4' : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between">
