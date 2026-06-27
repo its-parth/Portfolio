@@ -10,6 +10,11 @@ export default function ScrollyCanvas() {
 
   const [images, setImages] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [displayProgress, setDisplayProgress] = useState(0);
+  const [isFading, setIsFading] = useState(false);    // Start fade animation
+
+  const [showLoader, setShowLoader] = useState(true);
 
   // Generate frame paths
   const frameUrls = useMemo(() => {
@@ -29,20 +34,55 @@ export default function ScrollyCanvas() {
       img.src = url;
 
       img.onload = () => {
-        loadedImages[index] = img;
-        loadedCount++;
+  loadedImages[index] = img;
+  loadedCount++;
 
-        if (loadedCount === TOTAL_FRAMES) {
-          setImages(loadedImages);
-          setLoaded(true);
-        }
-      };
+  setLoadingProgress(
+    Math.floor((loadedCount / TOTAL_FRAMES) * 100)
+  );
+
+  if (loadedCount === TOTAL_FRAMES) {
+    setImages(loadedImages);
+    setLoaded(true);
+  }
+};
 
       img.onerror = () => {
         console.error("Failed:", url);
       };
     });
   }, [frameUrls]);
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setDisplayProgress((prev) => {
+      if (prev >= loadingProgress) return prev;
+
+      return Math.min(prev + 1, loadingProgress);
+    });
+  }, 20);
+
+  return () => clearInterval(interval);
+}, [loadingProgress]);
+
+useEffect(() => {
+  if (!loaded || displayProgress < 100) return;
+
+  // Wait before starting the fade
+  const fadeTimer = setTimeout(() => {
+    setIsFading(true);
+  }, 800);
+
+  // Remove loader after fade animation completes
+  const removeTimer = setTimeout(() => {
+    setShowLoader(false);
+  }, 1800);
+
+  return () => {
+    clearTimeout(fadeTimer);
+    clearTimeout(removeTimer);
+  };
+}, [loaded, displayProgress]);
 
   // Resize canvas
   useEffect(() => {
@@ -128,7 +168,8 @@ useEffect(() => {
       }
     }
     const x = (canvas.width - drawWidth) / 2;
-    const y = (canvas.height - drawHeight) / 2 + 50;
+
+    const y = (canvas.height - drawHeight) / 2;
 
     ctx.drawImage(image, x, y, drawWidth, drawHeight);
   };
@@ -151,6 +192,13 @@ useEffect(() => {
   return () => unsubscribe();
 }, [loaded, images, currentFrame]);
 
+  const getLoadingText = () => {
+  if (displayProgress < 30) return "Initializing";
+  if (displayProgress < 60) return "Loading Assets";
+  if (displayProgress < 90) return "Preparing Experience";
+  return "Ready";
+};
+
   return (
     <div
       id="hero"
@@ -158,13 +206,44 @@ useEffect(() => {
       className="relative h-[500vh] w-full bg-black"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        {!loaded && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black z-50">
-            <p className="text-white tracking-widest animate-pulse">
-              Loading...
-            </p>
-          </div>
-        )}
+        {showLoader && (
+  <div
+    className={`absolute inset-0 z-[200] bg-black flex items-center justify-center transition-opacity duration-1000 ${
+      isFading
+        ? "opacity-0 pointer-events-none"
+        : "opacity-100"
+    }`}
+  >
+    <div className="text-center select-none">
+
+      {/* Brand */}
+      <h1 className="text-5xl md:text-7xl font-semibold tracking-[0.35em] text-white">
+        PARTH
+      </h1>
+
+      {/* Status */}
+      <p className="mt-8 uppercase tracking-[0.45em] text-neutral-500 text-xs md:text-sm">
+        {getLoadingText()}
+      </p>
+
+      {/* Progress Bar */}
+      <div className="mt-10 w-72 md:w-96 h-[2px] rounded-full bg-white/10 overflow-hidden mx-auto">
+        <div
+          className="h-full bg-white transition-all duration-300"
+          style={{
+            width: `${displayProgress}%`,
+          }}
+        />
+      </div>
+
+      {/* Percentage */}
+      <div className="mt-6 text-3xl md:text-4xl font-light tracking-wider">
+        {displayProgress}%
+      </div>
+
+    </div>
+  </div>
+)}
 
         <canvas
           ref={canvasRef}
