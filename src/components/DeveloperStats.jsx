@@ -50,7 +50,7 @@ const stats = [
 export default function DeveloperStats() {
   return (
     <section
-      id="stats"
+      id="journey"
       className="relative z-10 bg-[#121212] py-25 px-6 md:px-16 border-t border-white/5 overflow-hidden"
     >
       {/* Background Glow */}

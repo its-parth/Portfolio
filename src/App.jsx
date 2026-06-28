@@ -9,6 +9,7 @@ import NoiseOverlay from './components/NoiseOverlay';
 import EngineeringToolkit from './components/EngineeringToolkit';
 import About from './components/About';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -29,9 +30,7 @@ function App() {
       <About />
       <Contact />
       
-      <footer className="py-8 text-center text-sm text-gray-500 bg-[#121212] border-t border-white/5 relative z-10">
-        <p>© {new Date().getFullYear()} Parth Magar. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

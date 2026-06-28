@@ -3,9 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
   { name: "Projects", href: "#projects" },
-  { name: "Achievements", href: "#achievements" },
   { name: "Journey", href: "#journey" },
-  { name: "Resume", href: "#resume" },
+  { name: "Activity", href: "#activity" },
+  { name: "Toolkit", href: "#toolkit" },
+  { name: "About", href: "#about" },
 ];
 
 export default function Navbar() {
@@ -79,7 +80,7 @@ export default function Navbar() {
             ))}
 
             <a
-              href="mailto:hello@example.com"
+              href="#contact"
               className="px-5 py-2 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all duration-300"
             >
               Let's Talk
@@ -137,7 +138,7 @@ export default function Navbar() {
               ))}
 
               <a
-                href="mailto:hello@example.com"
+                href="#contact"
                 onClick={closeMenu}
                 className="mt-8 px-8 py-3 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all"
               >
