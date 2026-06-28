@@ -6,6 +6,7 @@ import DeveloperStats from './components/DeveloperStats';
 import Journey from './components/Journey';
 import Resume from './components/Resume';
 import NoiseOverlay from './components/NoiseOverlay';
+import EngineeringToolkit from './components/EngineeringToolkit';
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       
       {/* <Achievements /> */}
       <DeveloperStats />
-      <Journey />
+      <EngineeringToolkit />
+      {/* <Journey /> */}
       <Resume />
       
       <footer className="py-8 text-center text-sm text-gray-500 bg-[#121212] border-t border-white/5 relative z-10">

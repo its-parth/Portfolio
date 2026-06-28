@@ -111,17 +111,16 @@ export default function Projects() {
 
             {/* Content */}
 
-            <div className="p-10 lg:p-14 flex flex-col">
+            <div className="p-6 sm:p-8 lg:p-14 flex flex-col">
 
               <span className="text-xs tracking-[0.4em] uppercase text-gray-500">
                 Featured Project • {featuredProject.year}
               </span>
 
-              <h3 className="mt-5 text-5xl font-semibold">
-                {featuredProject.title}
+              <h3 className="mt-5 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight">                {featuredProject.title}
               </h3>
 
-              <p className="mt-3 text-gray-300 text-xl">
+              <p className="mt-3 text-base sm:text-lg lg:text-xl text-gray-300">
                 {featuredProject.subtitle}
               </p>
 
@@ -129,7 +128,7 @@ export default function Projects() {
                 {featuredProject.description}
               </p>
 
-              <div className="flex flex-wrap gap-3 mt-10">
+              <div className="flex flex-wrap gap-2 mt-8">
                 {featuredProject.tech.map((item) => (
                   <span
                     key={item}
@@ -140,11 +139,11 @@ export default function Projects() {
                 ))}
               </div>
 
-              <div className="flex gap-5 mt-12">
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
 
                 <a
                   href={featuredProject.live}
-                  className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-medium hover:scale-105 transition"
+                  className="flex justify-center items-center gap-2 bg-white text-black px-5 py-3 rounded-full"
                 >
                   Live Demo
                   <ExternalLink size={18} />
@@ -152,7 +151,7 @@ export default function Projects() {
 
                 <a
                   href={featuredProject.github}
-                  className="flex items-center gap-2 border border-white/20 px-6 py-3 rounded-full hover:bg-white/5 transition"
+                  className="flex justify-center items-center gap-2 bg-white text-black px-5 py-3 rounded-full"
                 >
                   GitHub
                   <Github size={18} />
