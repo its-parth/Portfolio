@@ -7,6 +7,8 @@ import Journey from './components/Journey';
 import Resume from './components/Resume';
 import NoiseOverlay from './components/NoiseOverlay';
 import EngineeringToolkit from './components/EngineeringToolkit';
+import About from './components/About';
+import Contact from './components/Contact';
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
       <DeveloperStats />
       <EngineeringToolkit />
       {/* <Journey /> */}
-      <Resume />
+
+      <About />
+      <Contact />
       
       <footer className="py-8 text-center text-sm text-gray-500 bg-[#121212] border-t border-white/5 relative z-10">
         <p>© {new Date().getFullYear()} Parth Magar. All rights reserved.</p>

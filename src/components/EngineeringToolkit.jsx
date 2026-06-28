@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import TechPill from "./TechPill";
 import { technologies, techCategories } from "../data/techData.js";
-
+import { useMotionValue, useSpring } from "framer-motion";
 const rows = [
     technologies.slice(0, 2),
     technologies.slice(2, 3),
@@ -25,11 +25,15 @@ const rowClasses = [
 ];
 
 export default function EngineeringToolkit() {
-    console.log("technologies: ", technologies)
+    const rotateX = useMotionValue(0);
+    const rotateY = useMotionValue(0);
+
+    const springRotateX = useSpring(rotateX);
+    const springRotateY = useSpring(rotateY);
     return (
         <section
             id="toolkit"
-            className="relative overflow-hidden bg-[#121212] py-20 border-t border-white/5"
+            className="select-none relative overflow-hidden bg-[#121212] py-20 border-t border-white/5"
         >
             {/* Ambient Glow */}
 
@@ -121,8 +125,31 @@ export default function EngineeringToolkit() {
                 </div>
 
                 {/* Floating Pills */}
+                <motion.div
+                style={{
+                    rotateX: springRotateX,
+                    rotateY: springRotateY,
+                }}
+                onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    rotateY.set((x / rect.width - 0.5) * 4);
+                    rotateX.set(-(y / rect.height - 0.5) * 4);
+                }}
+                onMouseLeave={() => {
+                    rotateX.set(0);
+                    rotateY.set(0);
+                }}
+                >
+                {/* Floating pills */}
                 <div className="hidden md:block">
-                    <div className="space-y-7">
+                    <div className="relative" style={{
+                        perspective: 1000,
+                    }}>
+                        <div className="space-y-7">
 
                         {rows.map((row, rowIndex) => (
 
@@ -167,7 +194,9 @@ export default function EngineeringToolkit() {
                         ))}
 
                     </div>
+                    </div>
                 </div>
+                </motion.div>
 
             </div>
         </section>

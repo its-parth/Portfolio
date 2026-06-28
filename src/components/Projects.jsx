@@ -62,7 +62,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative z-10 bg-[#121212] py-32 px-6 md:px-16 border-t border-white/5"
+      className="relative z-10 bg-[#121212] py-25 px-6 md:px-16 border-t border-white/5"
     >
       <div className="max-w-7xl mx-auto">
 

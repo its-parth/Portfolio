@@ -51,7 +51,7 @@ export default function DeveloperStats() {
   return (
     <section
       id="stats"
-      className="relative z-10 bg-[#121212] py-32 px-6 md:px-16 border-t border-white/5 overflow-hidden"
+      className="relative z-10 bg-[#121212] py-25 px-6 md:px-16 border-t border-white/5 overflow-hidden"
     >
       {/* Background Glow */}
 
