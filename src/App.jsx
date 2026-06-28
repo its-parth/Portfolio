@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import ScrollyCanvas from './components/ScrollyCanvas';
 import Projects from './components/Projects';
-import Achievements from './components/Achievements';
+import DeveloperStats from './components/DeveloperStats';
 import Journey from './components/Journey';
 import Resume from './components/Resume';
 import NoiseOverlay from './components/NoiseOverlay';
@@ -18,7 +18,8 @@ function App() {
         <Projects />
       </div>
       
-      <Achievements />
+      {/* <Achievements /> */}
+      <DeveloperStats />
       <Journey />
       <Resume />
       

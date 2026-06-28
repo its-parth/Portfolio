@@ -1,96 +1,256 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import { Github, ExternalLink } from "lucide-react";
+
+const featuredProject = {
+  title: "StudyNotion",
+  subtitle: "Full Stack EdTech Platform",
+  year: "2025",
+  description:
+    "A production-ready EdTech platform featuring secure authentication, role-based access, course management, Razorpay payment integration, Cloudinary media uploads, and student progress tracking.",
+
+  tech: [
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "Redux",
+    "Razorpay",
+  ],
+
+  image: "/projects/studynotion-placeholder.png",
+
+  live: "#",
+  github: "#",
+};
 
 const projects = [
+  
   {
-    id: 1,
-    title: 'Awwwards Portfolio',
-    role: 'Creative Developer',
-    year: '2024',
-    description: 'High-performance interactive scrollytelling experience blending design and motion.',
-    link: '#',
+    title: "DivyaTemple",
+    subtitle: "Temple Discovery Platform",
+    year: "2024",
+
+    description:
+      "Temple discovery platform with authentication, admin dashboard, image upload and search.",
+
+    tech: ["React", "Node.js", "MongoDB"],
+
+    image: "/projects/divya-placeholder.png",
+
+    live: "#",
+    github: "#",
   },
   {
-    id: 2,
-    title: 'E-Commerce Premium',
-    role: 'Frontend Engineer',
-    year: '2023',
-    description: 'Next-gen shopping experience with 3D product visualization.',
-    link: '#',
+    title: "ShareProgress",
+    subtitle: "Productivity Platform",
+    year: "2025",
+
+    description:
+      "A productivity application with goals, Pomodoro timer, task management and analytics dashboard.",
+
+    tech: ["React", "Express", "MongoDB"],
+
+    image: "/projects/shareprogress-placeholder.png",
+
+    live: "#",
+    github: "#",
   },
-  {
-    id: 3,
-    title: 'Generative AI Dashboard',
-    role: 'Fullstack Dev',
-    year: '2023',
-    description: 'Analytics dashboard with custom GLSL shaders and real-time data.',
-    link: '#',
-  },
-  {
-    id: 4,
-    title: 'Web3 Platform',
-    role: 'Design Engineer',
-    year: '2022',
-    description: 'Decentralized application with immersive micro-interactions.',
-    link: '#',
-  }
 ];
 
 export default function Projects() {
   return (
-    <div className="relative z-10 bg-[#121212] min-h-screen py-32 px-6 md:px-16 border-t border-white/5">
+    <section
+      id="projects"
+      className="relative z-10 bg-[#121212] py-32 px-6 md:px-16 border-t border-white/5"
+    >
       <div className="max-w-7xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
+
+        {/* Heading */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          viewport={{ once: true }}
+          transition={{ duration: .7 }}
           className="mb-20"
         >
-          <h3 className="text-5xl md:text-7xl font-medium tracking-tight">Selected Work</h3>
-          <p className="mt-4 text-gray-400 text-lg md:text-xl max-w-2xl">
-            A curated list of projects focusing on design engineering, high-end interactions, and performant web technologies.
+          <h2 className="text-5xl md:text-7xl font-semibold tracking-tight">
+            Featured Projects
+          </h2>
+
+          <p className="mt-5 text-lg text-gray-400 max-w-3xl leading-relaxed">
+            Full-stack applications built using modern web technologies,
+            focused on performance, scalability and solving real-world
+            problems.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {projects.map((project, idx) => (
-            <motion.a
-              href={project.link}
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
+        {/* ===================== FEATURED ===================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: .8 }}
+          className="group rounded-3xl border border-white/10 overflow-hidden bg-white/[0.03] mb-12 hover:border-white/20 transition-all"
+        >
+          <div className="grid lg:grid-cols-2">
+
+            {/* Image */}
+
+            <div className="aspect-video lg:aspect-auto bg-neutral-900 overflow-hidden">
+
+              <img
+                src={featuredProject.image}
+                alt={featuredProject.title}
+                className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+              />
+
+            </div>
+
+            {/* Content */}
+
+            <div className="p-10 lg:p-14 flex flex-col">
+
+              <span className="text-xs tracking-[0.4em] uppercase text-gray-500">
+                Featured Project • {featuredProject.year}
+              </span>
+
+              <h3 className="mt-5 text-5xl font-semibold">
+                {featuredProject.title}
+              </h3>
+
+              <p className="mt-3 text-gray-300 text-xl">
+                {featuredProject.subtitle}
+              </p>
+
+              <p className="mt-8 text-gray-400 leading-8">
+                {featuredProject.description}
+              </p>
+
+              <div className="flex flex-wrap gap-3 mt-10">
+                {featuredProject.tech.map((item) => (
+                  <span
+                    key={item}
+                    className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex gap-5 mt-12">
+
+                <a
+                  href={featuredProject.live}
+                  className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-medium hover:scale-105 transition"
+                >
+                  Live Demo
+                  <ExternalLink size={18} />
+                </a>
+
+                <a
+                  href={featuredProject.github}
+                  className="flex items-center gap-2 border border-white/20 px-6 py-3 rounded-full hover:bg-white/5 transition"
+                >
+                  GitHub
+                  <Github size={18} />
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+        </motion.div>
+
+        {/* ===================== OTHER PROJECTS ===================== */}
+
+        <div className="grid md:grid-cols-2 gap-8">
+
+          {projects.map((project, index) => (
+
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.8, delay: idx * 0.1, ease: 'easeOut' }}
-              className="group relative block overflow-hidden rounded-3xl bg-white/5 border border-white/10 backdrop-blur-lg aspect-[4/3] md:aspect-square lg:aspect-[4/3] p-8 md:p-10 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20 select-none cursor-pointer"
+              viewport={{ once: true }}
+              transition={{
+                duration: .7,
+                delay: index * .15,
+              }}
+              className="group rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-white/20 transition-all"
             >
-              {/* Light reflection effect */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-all duration-1000 z-0"></div>
-              
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <div className="flex justify-between items-start mb-6">
-                    <span className="px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md text-xs font-mono text-gray-300 border border-white/10 group-hover:border-white/30 transition-colors">
-                      {project.year}
+
+              <div className="aspect-video bg-neutral-900 overflow-hidden">
+
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                />
+
+              </div>
+
+              <div className="p-8">
+
+                <span className="text-xs uppercase tracking-[0.35em] text-gray-500">
+                  {project.year}
+                </span>
+
+                <h3 className="text-3xl font-semibold mt-4">
+                  {project.title}
+                </h3>
+
+                <p className="text-gray-300 mt-2">
+                  {project.subtitle}
+                </p>
+
+                <p className="mt-6 text-gray-400 leading-7">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-8">
+                  {project.tech.map((item) => (
+                    <span
+                      key={item}
+                      className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs"
+                    >
+                      {item}
                     </span>
-                    <span className="text-sm font-light text-gray-400">{project.role}</span>
-                  </div>
-                  
-                  {/* Subtle Glow on hover */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-white/20 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-full"></div>
+                  ))}
                 </div>
 
-                <div className="mt-auto transform transition-transform duration-500 group-hover:-translate-y-2">
-                  <h4 className="text-3xl md:text-4xl font-medium mb-3">{project.title}</h4>
-                  <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-md">
-                    {project.description}
-                  </p>
+                <div className="flex gap-4 mt-8">
+
+                  <a
+                    href={project.live}
+                    className="flex items-center gap-2 text-white hover:text-gray-300 transition"
+                  >
+                    Live
+                    <ExternalLink size={17} />
+                  </a>
+
+                  <a
+                    href={project.github}
+                    className="flex items-center gap-2 text-white hover:text-gray-300 transition"
+                  >
+                    GitHub
+                    <Github size={17} />
+                  </a>
+
                 </div>
+
               </div>
-            </motion.a>
+
+            </motion.div>
+
           ))}
+
         </div>
+
       </div>
-    </div>
+    </section>
   );
 }
