@@ -93,7 +93,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: .8 }}
-          className="group rounded-3xl border border-white/10 overflow-hidden bg-white/[0.03] mb-12 hover:border-white/20 transition-all"
+          className="group rounded-3xl border border-white/10 overflow-hidden bg-[#1A1A1A] mb-12 hover:border-white/20 transition-all"
         >
           <div className="grid lg:grid-cols-2">
 
@@ -179,7 +179,7 @@ export default function Projects() {
                 duration: .7,
                 delay: index * .15,
               }}
-              className="group rounded-3xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-white/20 transition-all"
+              className="group rounded-3xl border border-white/10 bg-[#1A1A1A] overflow-hidden hover:border-white/20 transition-all"
             >
 
               <div className="aspect-video bg-neutral-900 overflow-hidden">

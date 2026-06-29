@@ -101,17 +101,18 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: .8 }}
-          className="grid md:grid-cols-4 gap-8 mt-28 border-t border-white/10 pt-14"
+          className="grid md:flex md:justify-around md:flex-wrap md:items-center gap-8 mt-28 border-t border-white/10 pt-14"
         >
 
-          <Info
+          {/* <Info
             title="Location"
             value="Pune, India"
-          />
+          /> */}
 
           <Info
             title="Education"
             value="B.E. Computer Engineering"
+            
           />
 
           <Info
@@ -144,7 +145,7 @@ export default function About() {
 function Info({ title, value }) {
   return (
     <div>
-      <p className="uppercase tracking-[0.35em] text-xs text-neutral-500">
+      <p className="uppercase tracking-[0.35em] text-xs text-neutral-500 min-w-40">
         {title}
       </p>
 
