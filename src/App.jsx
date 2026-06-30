@@ -10,7 +10,7 @@ import EngineeringToolkit from './components/EngineeringToolkit';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import LeetCodeHeatmap from './components/Activity/LeetCodeHeatmap';
+import Activity from './components/Activity/Activity';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
       
       {/* <Achievements /> */}
       <DeveloperStats />
-      <LeetCodeHeatmap />
+      <Activity />
       <EngineeringToolkit />
       {/* <Journey /> */}
 

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 
-const USERNAME = "dvb_1304";
+const USERNAME = "its-parth";
 
 export default function LeetCodeHeatmap() {
   const [calendarData, setCalendarData] = useState([]);
@@ -71,7 +71,16 @@ export default function LeetCodeHeatmap() {
 
   if (loading) {
     return (
-      <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 animate-pulse">
+      <div className="
+        rounded-3xl
+        border border-white/10
+        bg-white/[0.03]
+        backdrop-blur-sm
+        p-8
+        transition-all
+        duration-500
+        hover:border-white/20
+        ">
         <div className="h-6 w-48 rounded bg-slate-700 mb-6"></div>
 
         <div className="grid grid-cols-7 gap-2">
@@ -95,89 +104,157 @@ export default function LeetCodeHeatmap() {
   }
 
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-lg">
+    <div className="mt-8 overflow-x-auto pb-2">
+        <div
+    className="
+        rounded-3xl
+        border border-white/10
+        bg-white/[0.03]
+        backdrop-blur-sm
+        p-8
+        transition-all
+        duration-500
+        hover:border-white/20
+    "
+    >
 
-      <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex items-center justify-between">
 
-        <div>
-          <h2 className="text-2xl font-bold text-white">
-            LeetCode Activity
-          </h2>
+            <div>
+            <h2 className="text-4xl font-semibold tracking-tight">
+                LeetCode Activity
+            </h2>
 
-          <p className="text-sm text-slate-400 mt-1">
-            Last 365 Days
-          </p>
+            <p className="text-sm text-slate-400 mt-1">
+                Last 365 Days
+            </p>
+            </div>
+
+            <a
+            href={`https://leetcode.com/u/${USERNAME}/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+    rounded-full
+    border
+    border-white/10
+    bg-white/[0.03]
+    px-5
+    py-3
+    transition-all
+    duration-300
+    hover:bg-white
+    hover:text-black
+    "
+            >
+            View Profile
+            </a>
+
         </div>
 
-        <a
-          href={`https://leetcode.com/u/${USERNAME}/`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-lg bg-yellow-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-yellow-400"
-        >
-          View Profile
-        </a>
-
-      </div>
-
-      <CalendarHeatmap
-        startDate={startDate}
-        endDate={endDate}
-        values={calendarData}
-        gutterSize={4}
-        showWeekdayLabels={false}
-        classForValue={getClass}
-        tooltipDataAttrs={(value) => ({
-          "data-tip": value.date
-            ? `${value.date.toDateString()} : ${value.count} submissions`
-            : "No submissions",
-        })}
-      />
-
-      <div className="mt-10 grid grid-cols-2 gap-5 md:grid-cols-4">
-
-        <div className="rounded-xl bg-slate-800 p-4 text-center">
-          <p className="text-3xl font-bold text-green-400">
-            {streak}
-          </p>
-
-          <p className="mt-1 text-sm text-slate-400">
-            Day Streak
-          </p>
+        <div className="mt-6 overflow-x-auto">
+            <div className="min-w-[980px] flex justify-center">
+                <CalendarHeatmap
+                    startDate={startDate}
+                    endDate={endDate}
+                    values={calendarData}
+                    gutterSize={4}
+                    showWeekdayLabels={false}
+                    classForValue={getClass}
+                    tooltipDataAttrs={(value) => ({
+                    "data-tip": value.date
+                        ? `${value.date.toDateString()} : ${value.count} submissions`
+                        : "No submissions",
+                    })}
+                />
+            </div>
         </div>
 
-        <div className="rounded-xl bg-slate-800 p-4 text-center">
-          <p className="text-3xl font-bold text-blue-400">
-            {activeDays}
-          </p>
+        {/* <div className="mt-10 grid grid-cols-2 gap-5 md:grid-cols-4">
 
-          <p className="mt-1 text-sm text-slate-400">
-            Active Days
-          </p>
+            <div className="
+                rounded-2xl
+                border
+                border-white/10
+                bg-white/[0.03]
+                p-5
+                transition-all
+                duration-300
+                hover:bg-white/[0.05]
+                hover:border-white/20
+                ">
+            <p className="text-3xl font-bold text-green-400">
+                {streak}
+            </p>
+
+            <p className="mt-1 text-sm text-slate-400">
+                Day Streak
+            </p>
+            </div>
+
+            <div className="
+    rounded-2xl
+    border
+    border-white/10
+    bg-white/[0.03]
+    p-5
+    transition-all
+    duration-300
+    hover:bg-white/[0.05]
+    hover:border-white/20
+    ">
+            <p className="text-3xl font-bold text-blue-400">
+                {activeDays}
+            </p>
+
+            <p className="mt-1 text-sm text-slate-400">
+                Active Days
+            </p>
+            </div>
+
+            <div className="
+    rounded-2xl
+    border
+    border-white/10
+    bg-white/[0.03]
+    p-5
+    transition-all
+    duration-300
+    hover:bg-white/[0.05]
+    hover:border-white/20
+    ">
+            <p className="text-3xl font-bold text-purple-400">
+                {calendarData.length}
+            </p>
+
+            <p className="mt-1 text-sm text-slate-400">
+                Coding Days
+            </p>
+            </div>
+
+            <div className="
+    rounded-2xl
+    border
+    border-white/10
+    bg-white/[0.03]
+    p-5
+    transition-all
+    duration-300
+    hover:bg-white/[0.05]
+    hover:border-white/20
+    ">
+            <p className="text-3xl font-bold text-orange-400">
+                365
+            </p>
+
+            <p className="mt-1 text-sm text-slate-400">
+                Days Tracked
+            </p>
+            </div>
+
+        </div> */}
+
         </div>
-
-        <div className="rounded-xl bg-slate-800 p-4 text-center">
-          <p className="text-3xl font-bold text-purple-400">
-            {calendarData.length}
-          </p>
-
-          <p className="mt-1 text-sm text-slate-400">
-            Coding Days
-          </p>
-        </div>
-
-        <div className="rounded-xl bg-slate-800 p-4 text-center">
-          <p className="text-3xl font-bold text-orange-400">
-            365
-          </p>
-
-          <p className="mt-1 text-sm text-slate-400">
-            Days Tracked
-          </p>
-        </div>
-
-      </div>
-
     </div>
   );
 }
