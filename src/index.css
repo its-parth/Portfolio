@@ -33,3 +33,38 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.react-calendar-heatmap text {
+  fill: #94a3b8;
+  font-size: 10px;
+}
+
+.react-calendar-heatmap rect {
+  rx: 3;
+}
+
+.react-calendar-heatmap .color-empty {
+  fill: #1e293b;
+}
+
+.react-calendar-heatmap .color-scale-1 {
+  fill: #0e4429;
+}
+
+.react-calendar-heatmap .color-scale-2 {
+  fill: #006d32;
+}
+
+.react-calendar-heatmap .color-scale-3 {
+  fill: #26a641;
+}
+
+.react-calendar-heatmap .color-scale-4 {
+  fill: #39d353;
+}
+
+.react-calendar-heatmap rect:hover {
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  cursor: pointer;
+}

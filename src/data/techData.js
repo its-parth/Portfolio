@@ -9,7 +9,7 @@ import {
   SiNextdotjs,
   SiTailwindcss,
   SiRedux,
-  SiFramer,
+  SiRazorpay,
   SiExpress,
   SiMongodb,
   SiCloudinary,
@@ -70,8 +70,8 @@ export const technologies = [
   },
 
   {
-    name: "Framer Motion",
-    icon: SiFramer,
+    name: "Razorpay",
+    icon: SiRazorpay,
     duration: 8,
     delay: 3.5,
   },
@@ -134,7 +134,6 @@ export const techCategories = [
       technologies.find(t => t.name === "Next.js"),
       technologies.find(t => t.name === "Tailwind"),
       technologies.find(t => t.name === "Redux"),
-      technologies.find(t => t.name === "Framer Motion"),
     ],
   },
 
@@ -145,6 +144,7 @@ export const techCategories = [
       technologies.find(t => t.name === "Express"),
       technologies.find(t => t.name === "MongoDB"),
       technologies.find(t => t.name === "Cloudinary"),
+      technologies.find(t => t.name === "Razorpay")
     ],
   },
 

@@ -44,17 +44,17 @@ export default function Footer() {
           <div className="flex gap-4">
 
             <Social
-              href="https://github.com/yourusername"
+              href="https://github.com/its-parth"
               icon={<Github size={20} />}
             />
 
             <Social
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/parth-magar"
               icon={<Linkedin size={20} />}
             />
 
             <Social
-              href="https://leetcode.com/yourusername"
+              href="https://leetcode.com/its-parth"
               text="LC"
             />
 

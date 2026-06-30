@@ -118,7 +118,7 @@ export default function Contact() {
               </p>
 
               <p className="mt-2">
-                your@email.com
+                parthmagar.dev@gmail.com
               </p>
 
             </div>
@@ -138,19 +138,19 @@ export default function Contact() {
         >
 
           <Social
-            href="https://github.com/"
+            href="https://github.com/its-parth"
             icon={<Github size={20} />}
             title="GitHub"
           />
 
           <Social
-            href="https://linkedin.com/"
+            href="https://linkedin.com/in/parth-magar"
             icon={<Linkedin size={20} />}
             title="LinkedIn"
           />
 
           <Social
-            href="https://leetcode.com/"
+            href="https://leetcode.com/its-parth"
             title="LeetCode"
           />
 
@@ -176,7 +176,7 @@ export default function Contact() {
           </a>
 
           <a
-            href="mailto:your@email.com"
+            href="mailto:parthmagar.dev@gmail.com"
             className="group flex items-center gap-3 rounded-full bg-white px-8 py-4 text-black transition hover:scale-105"
           >
             <Mail size={20} />

@@ -20,8 +20,8 @@ const featuredProject = {
 
   image: "/projects/studynotion-placeholder.png",
 
-  live: "#",
-  github: "#",
+  live: "https://studynotion.parthmagar.tech",
+  github: "https://github.com/its-parth/StudyNotion",
 };
 
 const projects = [
@@ -38,8 +38,8 @@ const projects = [
 
     image: "/projects/divya-placeholder.png",
 
-    live: "#",
-    github: "#",
+    live: "https://divyatemple.parthmagar.tech",
+    github: "https://github.com/its-parth/DivyaTemple",
   },
   {
     title: "ShareProgress",
@@ -53,8 +53,8 @@ const projects = [
 
     image: "/projects/shareprogress-placeholder.png",
 
-    live: "#",
-    github: "#",
+    live: "https://shareprogress.parthmagar.tech",
+    github: "https://github.com/its-parth/ShareProgress",
   },
 ];
 
@@ -142,7 +142,7 @@ export default function Projects() {
               <div className="mt-10 flex flex-col sm:flex-row gap-4">
 
                 <a
-                  href={featuredProject.live}
+                  href={featuredProject.live} target="_blank"
                   className="flex justify-center items-center gap-2 bg-white text-black px-5 py-3 rounded-full"
                 >
                   Live Demo
@@ -150,7 +150,7 @@ export default function Projects() {
                 </a>
 
                 <a
-                  href={featuredProject.github}
+                  href={featuredProject.github} target="_blank"
                   className="flex justify-center items-center gap-2 bg-white text-black px-5 py-3 rounded-full"
                 >
                   GitHub
@@ -224,15 +224,14 @@ export default function Projects() {
                 <div className="flex gap-4 mt-8">
 
                   <a
-                    href={project.live}
-                    className="flex items-center gap-2 text-white hover:text-gray-300 transition"
+                    href={project.live} target="_blank"                     className="flex items-center gap-2 text-white hover:text-gray-300 transition"
                   >
                     Live
                     <ExternalLink size={17} />
                   </a>
 
                   <a
-                    href={project.github}
+                    href={project.github} target="_blank"
                     className="flex items-center gap-2 text-white hover:text-gray-300 transition"
                   >
                     GitHub
